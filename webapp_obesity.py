@@ -4,9 +4,25 @@ import streamlit as st
 from sklearn.preprocessing import StandardScaler
 
 # Load trained model
-loaded_model = pickle.load(open(r"C:\Users\ANIRBAN GHOSH\Downloads\Obesity\trained_model1.sav", 'rb'))
-scaler = pickle.load(open(r"C:\Users\ANIRBAN GHOSH\Downloads\Obesity\scaler.sav", 'rb'))
+import os
+import pickle
 
+# Get the directory of the current script
+current_directory = os.path.dirname('trained_model1.sav')
+
+# Construct the relative path to the .sav file
+model_path = os.path.join(current_directory, "trained_model1.sav")
+
+# Load the model
+with open(model_path, 'rb') as file:
+    loaded_model = pickle.load(file)
+# Get the directory of the current script
+current_directory = os.path.dirname('scaler.sav')
+# Construct the relative path to the .sav file
+model_path = os.path.join(current_directory, "scaler.sav")
+# Load the model
+with open(model_path, 'rb') as file:
+    loaded_model = pickle.load(file)
 # 🔹 Convert input data into numeric format
 def input_conversion(a):
     mapping = {
