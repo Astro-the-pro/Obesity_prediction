@@ -2,27 +2,11 @@ import numpy as np
 import pickle
 import streamlit as st
 from sklearn.preprocessing import StandardScaler
-import os
 
-# Get the directory of the current script
-current_directory = os.path.dirname('trained_model1.sav')
+# Load trained model
+loaded_model = pickle.load(open(r"C:\Users\ANIRBAN GHOSH\Downloads\Obesity\trained_model1.sav", 'rb'))
+scaler = pickle.load(open(r"C:\Users\ANIRBAN GHOSH\Downloads\Obesity\scaler.sav", 'rb'))
 
-# Construct the relative path to the .sav file
-model_path = os.path.join(current_directory, "trained_model1.sav")
-
-# Load the model
-with open(model_path, 'rb') as file:
-    loaded_model = pickle.load(file)
-
-
-current_directory1 = os.path.dirname('scaler.sav')
-
-# Construct the relative path to the .sav file
-model_path = os.path.join(current_directory1, "scaler.sav")
-
-# Load the model
-with open(model_path, 'rb') as file:
-    scaler = pickle.load(file)
 # 🔹 Convert input data into numeric format
 def input_conversion(a):
     mapping = {
@@ -71,9 +55,9 @@ def main():
 
     # Input fields
     Gender = st.selectbox('Gender', ['Male', 'Female'])
-    Age = st.number_input('Age')
-    Height = st.number_input('Height (meters)', step=0.01)
-    Weight = st.number_input('Weight (kg)', step=0.1)
+    Age = st.number_input('Age', min_value=1, max_value=100)
+    Height = st.number_input('Height (meters)', min_value=0.5, max_value=3.0, step=0.01)
+    Weight = st.number_input('Weight (kg)', min_value=10.0, max_value=300.0, step=0.1)
     family_history_with_overweight = st.selectbox('Family History of Overweight', ['Yes', 'No'])
     FAVC = st.selectbox('Frequently Consumes High-Calorie Foods?', ['Yes', 'No'])
     FCVC = st.slider('Frequency of Vegetable Consumption (1-3)', 1, 3)
