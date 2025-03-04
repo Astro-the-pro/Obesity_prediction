@@ -22,7 +22,7 @@ current_directory = os.path.dirname('scaler.sav')
 model_path = os.path.join(current_directory, "scaler.sav")
 # Load the model
 with open(model_path, 'rb') as file:
-    loaded_model = pickle.load(file)
+    scaler = pickle.load(file)
 # 🔹 Convert input data into numeric format
 def input_conversion(a):
     mapping = {
