@@ -88,7 +88,7 @@ def main():
     MTRANS = st.selectbox('Main Mode of Transportation', ['Automobile', 'Bike', 'Motorbike', 'Public Transportation', 'Walking'])
 
     # Predict Button
-    if st.button('Predict Obesity Level'):
+    if st.button('Detect Obesity Level'):
         Result = obesity_prediction([Gender, Age, Height, Weight, family_history_with_overweight, FAVC, FCVC, NCP, CAEC, SMOKE, CH2O, SCC, FAF, TUE, CALC, MTRANS])
         st.success(Result)
 
